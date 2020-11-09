@@ -14,9 +14,8 @@ public class Cart extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         getServletContext().getRequestDispatcher("/page_header").include(req, resp);
-        resp.getWriter().println("<h1>Корзина</h1>");
-        resp.getWriter().println("<p>contextPath: " + req.getContextPath() + "</p>");
-        resp.getWriter().println("<p>servletPath: " + req.getServletPath() + "</p>");
+        getServletContext().getRequestDispatcher("/WEB-INF/views/cart.jsp").include(req, resp); //переход на страницу корзины
+
     }
 
     @Override
