@@ -11,6 +11,9 @@
 
 <h:body>
 
+    <f:event listener="#{productController.preloadData}" type="preRenderView"/>
+
+
     <div class="container">
         <div class="row py-2">
 
@@ -41,6 +44,13 @@
                             <f:facet name="header">Price</f:facet>
                             #{product.price}
                         </h:column>
+
+
+                        <h:column>
+                            <f:facet name="header">Category</f:facet>
+                            #{empty product.productCategory ? "no category" : product.productCategory.name}
+                        </h:column>
+
 
                         <h:column>
                             <f:facet name="header">Actions</f:facet>

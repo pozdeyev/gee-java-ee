@@ -23,7 +23,9 @@
                         <h:inputText styleClass="form-control" id="title"
                                      value="#{productController.product.title}"
                                      placeholder="Enter title"/>
+                        <h:message for="title"  style="color: red" />
                     </div>
+
                     <div class="form-group">
 
                         <h:outputLabel value="Description"/>
@@ -38,7 +40,10 @@
                         <h:inputText p:type="price" styleClass="form-control" id="Price"
                                      value="#{productController.product.price}"
                                      placeholder="Enter price"/>
+                        <h:message for="Price"  style="color: red" />
                     </div>
+
+
 
                     <h:commandButton value="Submit" styleClass="btn btn-primary"
                                      action="#{productController.saveProduct()}"/>
