@@ -13,7 +13,7 @@ public class ProductCategory {
     private Long id;
 
     @NotEmpty
-    @Column
+    @Column(nullable = false)
     private String name;
 
     @OneToMany(

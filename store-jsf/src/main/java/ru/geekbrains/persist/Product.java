@@ -1,27 +1,25 @@
 package ru.geekbrains.persist;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name="products")
+@Table(name = "products")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
-    @Column
+
+    @Column(nullable = false)
     private String title;
 
     @Column
     private String description;
 
-    @NotNull
-    @Column
+
+    @Column(nullable = false)
     private BigDecimal price;
 
     @ManyToOne
@@ -30,11 +28,12 @@ public class Product {
     public Product() {
     }
 
-    public Product(Long id, String title, String description, BigDecimal price) {
+    public Product(Long id, String title, String description, BigDecimal price, ProductCategory productCategory) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.price = price;
+        this.productCategory = productCategory;
     }
 
     public Long getId() {

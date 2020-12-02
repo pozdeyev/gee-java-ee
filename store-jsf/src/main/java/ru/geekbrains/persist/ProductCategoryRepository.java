@@ -1,26 +1,13 @@
 package ru.geekbrains.persist;
-
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+import javax.ejb.Local;
 import java.util.List;
 
-@Named
-@ApplicationScoped
-public class ProductCategoryRepository {
+@Local
+public interface ProductCategoryRepository {
 
-    @PersistenceContext(unitName = "ds")
-    private EntityManager em;
+    ProductCategory findById(long id);
 
-    public ProductCategory findById(long id) {
-        return em.find(ProductCategory.class, id);
-    }
+    List<ProductCategory> findAll();
 
-    public List<ProductCategory> findAll() {
-        return em.createQuery("from ProductCategory p", ProductCategory.class)
-                .getResultList();
-    }
 
 }

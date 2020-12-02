@@ -1,44 +1,28 @@
 package ru.geekbrains.persist;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+import ru.geekbrains.service.ProductRepresentative;
+
+import javax.ejb.Local;
 import java.util.List;
 
-@Named
-@ApplicationScoped
-public class ProductRepository {
+@Local
+public interface ProductRepository {
 
-    @PersistenceContext(unitName = "ds")
-    private EntityManager em;
 
-    @Transactional
-    public void insert(Product product) {
-        em.persist(product);
-    }
+    void insert(Product product);
 
-    @Transactional
-    public void update(Product product) {
-        em.merge(product);
-    }
 
-    @Transactional
-    public void delete(long id) {
-        Product product = em.find(Product.class, id);
-        if (product != null) {
-            em.remove(product);
-        }
-    }
+    void update(Product product);
 
-    public Product findById(long id) {
-        return em.find(Product.class, id);
-    }
 
-    public List<Product> findAll() {
-        return em.createQuery("from Product p", Product.class)
-                .getResultList();
-    }
+    void delete(long id);
+
+    Product findById(long id);
+
+    List<Product> findAll();
+
+    ProductRepresentative findProductReprById(long id);
+
+    List<ProductRepresentative> findAllProductRepr();
 
 }

@@ -10,10 +10,58 @@
 
 
 <h:body>
+
     <div class="container">
-        <div class="row">
-            С другой стороны укрепление и развитие структуры обеспечивает участие в формировании систем массового участия.
-            Идейные соображения высшего порядка, а также дальнейшее развитие различных форм деятельности позволяет оценить значение новых предложений.
+        <div class="row py-2">
+
+            <h:form id="cartForm">
+                <div class="col-12">
+                    <h:dataTable value="#{cartController.all}" var="cart"
+                                 styleClass="table table-bordered my-2">
+                        <h:column>
+                            <f:facet name="header">Id</f:facet>
+                            #{cart.product.id}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Title</f:facet>
+                            #{cart.product.title}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Description</f:facet>
+                            #{cart.product.description}
+                        </h:column>
+
+
+                        <h:column>
+                            <f:facet name="header">Category</f:facet>
+                            #{empty cart.product.categoryName ? "no category" : cart.product.categoryName}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Price</f:facet>
+                            #{cart.product.price}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Count</f:facet>
+                            #{cart.count}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Sum</f:facet>
+                            #{cart.product.price * cart.count}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Actions</f:facet>
+                            <h:commandButton value="Delete" action="#{cartController.delFromCart(cart.product)}"
+                                             styleClass="btn btn-danger">
+                                <f:ajax event="click" render="cartForm"/>
+                            </h:commandButton>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </h:form>
         </div>
     </div>
 

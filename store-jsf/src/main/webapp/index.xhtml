@@ -48,7 +48,7 @@
 
                         <h:column>
                             <f:facet name="header">Category</f:facet>
-                            #{empty product.productCategory ? "no category" : product.productCategory.name}
+                            #{empty product.categoryName ? "no category" : product.categoryName}
                         </h:column>
 
 
@@ -60,6 +60,10 @@
                                              action="#{productController.deleteProduct(product)}">
                                 <f:ajax event="click" render="productForm"/>
                             </h:commandButton>
+                            <h:commandButton value="Add to Cart" styleClass="btn btn-primary" action="#{cartController.addToCart(product)}">
+                                <f:ajax event="click" render="productForm"/>
+                            </h:commandButton>
+
                         </h:column>
                     </h:dataTable>
                 </div>
