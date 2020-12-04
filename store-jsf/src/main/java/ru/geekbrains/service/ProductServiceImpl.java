@@ -6,6 +6,7 @@ import ru.geekbrains.persist.Product;
 import ru.geekbrains.persist.ProductCategory;
 import ru.geekbrains.persist.ProductCategoryRepository;
 import ru.geekbrains.persist.ProductRepository;
+import ru.geekbrains.rest.ProductServiceRs;
 
 import javax.ejb.AsyncResult;
 import javax.ejb.Asynchronous;
@@ -14,9 +15,11 @@ import javax.ejb.TransactionAttribute;
 import javax.inject.Inject;
 import java.util.List;
 import java.util.concurrent.Future;
+import javax.jws.*;
 
 @Stateless
-public class ProductServiceImpl implements ProductServiceLocal, ProductServiceRemote {
+@WebService (endpointInterface = "ru.geekbrains.service.ProductServiceWs", serviceName = "ProductService")
+public class ProductServiceImpl implements ProductServiceLocal, ProductServiceRemote, ProductServiceWs, ProductServiceRs {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 

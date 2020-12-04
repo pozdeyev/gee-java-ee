@@ -19,19 +19,19 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
     <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+        <li class="nav-item #{title=='Catalog' ? 'active':''}">
             <a class="nav-link" href="index.xhtml">Каталог</a>
         </li>
 
-        <li class="nav-item active">
+        <li class="nav-item #{title=='Cart' ? 'active':''}">
             <a class="nav-link" href="cart.xhtml">Корзина</a>
         </li>
 
-        <li class="nav-item active">
+        <li class="nav-item #{title=='Order' ? 'active':''}">
             <a class="nav-link" href="order.xhtml">Заказ</a>
         </li>
 
-        <li class="nav-item active">
+        <li class="nav-item #{title=='About' ? 'active':''}">
             <a class="nav-link" href="about.xhtml">О компании</a>
         </li>
     </ul>

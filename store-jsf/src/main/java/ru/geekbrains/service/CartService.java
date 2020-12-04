@@ -1,19 +1,19 @@
 package ru.geekbrains.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import ru.geekbrains.persist.ItemInCart;
 
 import javax.ejb.Stateful;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Stateful
 public class CartService implements Serializable {
 
-    private static final Logger logger = LoggerFactory.getLogger(CartService.class);
 
-    private Map<ItemInCart, Integer> products;
+    private final Map<ItemInCart, Integer> products;
 
     public CartService() {
         products = new HashMap<>();

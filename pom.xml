@@ -10,7 +10,10 @@
     <packaging>pom</packaging>
     <modules>
 
-        <module>first-java-ee-webapp</module>
+        <module>store-jsf</module>
+        <module>ejb-client</module>
+        <module>ws-client</module>
+        <module>rest-client</module>
     </modules>
 
 
