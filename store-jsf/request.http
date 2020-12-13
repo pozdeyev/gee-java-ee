@@ -1,0 +1,35 @@
+GET http://localhost:8080/store-jsf/api/v1/product/all
+
+
+###
+
+GET http://localhost:8080/store-jsf/api/v1/product/6
+
+###
+
+POST http://localhost:8080/store-jsf/api/v1/product/
+Content-Type: application/json
+
+{
+  "categoryId": 1,
+  "categoryName": "Фрукты",
+  "description": "Манго",
+  "price": 999,
+  "title": "Mango"
+}
+
+
+###
+
+PUT http://localhost:8080/store-jsf/api/v1/product/
+Content-Type: application/json
+
+{
+  "categoryId": 2,
+  "description": "Манго",
+  "id": 21,
+  "price": 999,
+  "title": "Mango"
+}
+
+
