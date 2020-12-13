@@ -25,6 +25,10 @@ public class ProductCategory {
 
     public ProductCategory() {
     }
+    public ProductCategory(Long id) {
+       this.id=id;
+    }
+
 
     public List<Product> getProducts() {
         return products;

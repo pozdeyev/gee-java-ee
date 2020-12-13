@@ -8,6 +8,7 @@ import ru.geekbrains.persist.ProductCategoryRepository;
 import ru.geekbrains.persist.ProductRepository;
 import ru.geekbrains.rest.ProductServiceRs;
 
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.AsyncResult;
 import javax.ejb.Asynchronous;
 import javax.ejb.Stateless;
@@ -31,6 +32,7 @@ public class ProductServiceImpl implements ProductServiceLocal, ProductServiceRe
 
     @TransactionAttribute
     @Override
+    @RolesAllowed( "ADMIN" )
     public void insert(ProductRepresentative productRepresentative) {
         ProductCategory category = productCategoryRepository.findById(productRepresentative.getCategoryId());
         productRepository.insert(new Product (null, productRepresentative.getTitle(), productRepresentative.getDescription(),productRepresentative.getPrice(), category));
@@ -38,6 +40,7 @@ public class ProductServiceImpl implements ProductServiceLocal, ProductServiceRe
 
     @TransactionAttribute
     @Override
+    @RolesAllowed( "ADMIN" )
     public void update(ProductRepresentative productRepresentative) {
         ProductCategory category = productCategoryRepository.findById(productRepresentative.getCategoryId());
         productRepository.update(new Product (productRepresentative.getId(), productRepresentative.getTitle(), productRepresentative.getDescription(),productRepresentative.getPrice(), category));
@@ -45,6 +48,7 @@ public class ProductServiceImpl implements ProductServiceLocal, ProductServiceRe
 
     @TransactionAttribute
     @Override
+    @RolesAllowed( "ADMIN" )
     public void delete(long id) {
         productRepository.delete(id);
     }
@@ -59,15 +63,17 @@ public class ProductServiceImpl implements ProductServiceLocal, ProductServiceRe
         return productRepository.findAllProductRepr();
     }
 
+
+
     @Asynchronous
     @Override
     public Future<ProductRepresentative> findByIdAsync(long id) {
-        try {
-            Thread.sleep(15000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return new AsyncResult<>(productRepository.findProductReprById(id));
-    }
+       try {
+           Thread.sleep(15000);
+       } catch (InterruptedException e) {
+           e.printStackTrace();
+       }
+       return new AsyncResult<>(productRepository.findProductReprById(id));
+   }
 
 }
