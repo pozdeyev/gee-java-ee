@@ -54,13 +54,22 @@
 
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
-                            <h:commandButton value="Edit" styleClass="btn btn-success"
-                                             action="#{productController.editProduct(product)}"/>
-                            <h:commandButton value="Delete" styleClass="btn btn-danger"
-                                             action="#{productController.deleteProduct(product)}">
-                                <f:ajax event="click" render="productForm"/>
-                            </h:commandButton>
-                            <h:commandButton value="Add to Cart" styleClass="btn btn-primary" action="#{cartController.addToCart(product)}">
+
+                            <h:form rendered="#{request.userPrincipal != null}">
+                                <h:commandButton value="Edit" styleClass="btn btn-success"
+                                                 action="#{productController.editProduct(product)}"/>
+
+                                <h:commandButton value="Delete" styleClass="btn btn-danger"
+                                                 action="#{productController.deleteProduct(product)}">
+
+
+                                    <f:ajax event="click" render="productForm"/>
+                                </h:commandButton>
+                            </h:form>
+
+
+                            <h:commandButton value="Add to Cart" styleClass="btn btn-primary"
+                                             action="#{cartController.addToCart(product)}">
                                 <f:ajax event="click" render="productForm"/>
                             </h:commandButton>
 
@@ -68,11 +77,12 @@
                     </h:dataTable>
                 </div>
 
+            <h:form rendered="#{request.userPrincipal != null}">
                 <div class="col-12">
                     <h:commandButton value="Add Product" styleClass="btn btn-primary"
                                      action="#{productController.createProduct()}"/>
                 </div>
-
+            </h:form>
             </h:form>
         </div>
     </div>

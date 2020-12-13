@@ -20,20 +20,41 @@
 
     <ul class="navbar-nav mr-auto">
         <li class="nav-item #{title=='Catalog' ? 'active':''}">
-            <a class="nav-link" href="index.xhtml">Каталог</a>
+            <a class="nav-link" href="/store-jsf/index.xhtml">Каталог</a>
         </li>
 
         <li class="nav-item #{title=='Cart' ? 'active':''}">
-            <a class="nav-link" href="cart.xhtml">Корзина</a>
+            <a class="nav-link" href="/store-jsf/cart.xhtml">Корзина</a>
         </li>
 
         <li class="nav-item #{title=='Order' ? 'active':''}">
-            <a class="nav-link" href="order.xhtml">Заказ</a>
+            <a class="nav-link" href="/store-jsf/order.xhtml">Заказ</a>
         </li>
 
         <li class="nav-item #{title=='About' ? 'active':''}">
-            <a class="nav-link" href="about.xhtml">О компании</a>
+            <a class="nav-link" href="/store-jsf/about.xhtml">О компании</a>
         </li>
+
+        <li class="nav-item #{title=='UserAdd' ? 'active':''}">
+            <h:link rendered="#{request.isUserInRole('ADMIN')}" styleClass="nav-link" value="UserAdd" outcome="/admin/user"/>
+        </li>
+
+        <li class="nav-item #{title=='Users' ? 'active':''}">
+            <h:link rendered="#{request.isUserInRole('ADMIN')}" styleClass="nav-link" value="Users" outcome="/admin/users"/>
+        </li>
+
+
+        <li class="nav-item">
+        <h:form rendered="#{request.userPrincipal != null}">
+            <h:commandButton action="#{productController.logout()}" value="Logout #{request.userPrincipal.name}"/>
+        </h:form>
+
+        <h:link styleClass="nav-link"
+                rendered="#{request.userPrincipal == null}"
+                value="Login"
+                outcome="login"/>
+    </li>
+
     </ul>
 
 </nav>
